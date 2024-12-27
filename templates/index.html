@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="icon" href="../static/favicon.ico" type="image/x-icon">
+    <meta name="description" content="דף נחיתה עבור מכורים אנונימיים - רנסס ויקטוריה">
+    <meta name="keywords" content="מכורים אנונימיים, רנסס ויקטוריה, תמיכה, שיקום">
+    <meta name="author" content="מאור קדוש">
+    <meta property="og:title" content="רנסס ויקטוריה - רק להיום">
+    <meta property="og:description" content="דף נחיתה עבור מכורים אנונימיים - רנסס ויקטוריה">
+    <meta property="og:image" content="../static/logo.webp">
+    <meta property="og:url" content="https://jft.onrender.com/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="alternate" href="https://jft.onrender.com/he" hreflang="he">
+    <link rel="alternate" href="https://jft.onrender.com/ru" hreflang="ru">
+    <link rel="alternate" href="https://jft.onrender.com/en" hreflang="en">
+
+
+    <title>Just For Today</title>
+    <style>
+        /* Base styles */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background: #6200ea;
+            color: #fff;
+            padding: 1rem;
+        }
+
+        .main-title {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            padding: 1rem 0;
+            font-weight: bold;
+            margin: 0;
+            direction: rtl;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+
+        header img {
+            margin: 0 auto;
+            display: block;
+            border-radius: 10px;
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        header img:hover {
+            transform: scale(1.02);
+        }
+
+        main {
+            padding: 1rem;
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Language selector styles */
+        .language-selector {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            margin: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .lang-btn {
+            padding: 0.5rem 1.5rem;
+            border: 2px solid #fff;
+            border-radius: 4px;
+            background-color: transparent;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lang-btn:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .lang-btn:hover:after {
+            transform: translateX(0);
+        }
+
+        .lang-btn.active {
+            background-color: white;
+            color: #6200ea;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .lang-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Content sections */
+        .content-section {
+            display: none;
+            padding: 1.5rem;
+            animation: fadeIn 0.3s ease-in;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        /* Calendar and WhatsApp sections */
+        .calendar-section, .whatsapp-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .calendar-section:hover, .whatsapp-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .calendar-section iframe {
+            width: 100%;
+            max-width: 800px;
+            height: 600px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-top: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .whatsapp-section {
+            background-color: #f0f0f0;
+            padding: 2rem;
+        }
+
+        .whatsapp-section img {
+            width: 100px;
+            height: auto;
+            margin: 1rem 0;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-section img:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-section a {
+            color: #6200ea;
+            text-decoration: none;
+            font-weight: bold;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .whatsapp-section a:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #6200ea;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-section a:hover:after {
+            transform: scaleX(1);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #6200ea;
+            color: white;
+            margin-top: 2rem;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* RTL Support */
+        .rtl-content {
+            direction: rtl;
+            text-align: right;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .language-selector {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .lang-btn {
+                width: 80%;
+                margin: 0.5rem 0;
+            }
+
+            main {
+                padding: 0.5rem;
+                margin: 10px;
+            }
+
+            .calendar-section iframe {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="main-title">רנסס ויקטוריה - רק להיום</h1>
+        <div class="language-selector">
+            <button class="lang-btn active rtl-content" data-lang="he" lang="he">עברית</button>
+            <button class="lang-btn" data-lang="ru">Русский</button>
+            <button class="lang-btn" data-lang="en">English</button>
+        </div>
+        <img src="/static/logo.png" alt="ויקטוריה רנסס - דיירים">
+    </header>
+    <main>
+        <!-- Hebrew Content -->
+        <section id="hebrew-content" class="content-section active rtl-content" lang="he" data-lang="he">
+            <h2>עברית</h2>
+            <div class="rtl-content">{{ hebrew_text | safe }}</div>
+            <!-- Common sections in Hebrew -->
+            <section class="calendar-section rtl-content">
+                <h2>לוח שנה</h2>
+                <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FJerusalem&showPrint=0&src=Y2NmMjQ5YjJiNmJlNWQyMjNlMWIzZDA1NDlhYzU0ZWQ5MmY0MzgzYWJhOWRiM2IyNWRmZTVlYzhkMzcxMThiNUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=bWFvci5rYWRvc2hAYXJtaXMuY29t&color=%23cc7700&color=%23B39DDB"
+                frameborder="0" scrolling="no"></iframe>
+            </section>
+            <section class="whatsapp-section rtl-content">
+                <h2>הצטרפות לוואטסאפ</h2>
+                <p>
+                    להצטרפות לקבוצת הוואטסאפ של הדיירים -
+                    <a href="https://chat.whatsapp.com/BlBeTgrAOjIFzVDcppOgJ7" target="_blank">לחצו כאן!</a>
+                </p>
+                <img src="/static/whatsapp-logo.png" alt="לוגו וואטסאפ">
+            </section>
+        </section>
+
+        <!-- Russian Content -->
+        <section id="russian-content" class="content-section" data-lang="ru">
+            <h2>Русский</h2>
+            <div>{{ russian_text | safe }}</div>
+            <!-- Common sections in Russian -->
+            <section class="calendar-section">
+                <h2>Календарь</h2>
+                <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FJerusalem&showPrint=0&src=Y2NmMjQ5YjJiNmJlNWQyMjNlMWIzZDA1NDlhYzU0ZWQ5MmY0MzgzYWJhOWRiM2IyNWRmZTVlYzhkMzcxMThiNUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=bWFvci5rYWRvc2hAYXJtaXMuY29t&color=%23cc7700&color=%23B39DDB"
+                frameborder="0" scrolling="no"></iframe>
+            </section>
+            <section class="whatsapp-section">
+                <h2>Присоединиться к WhatsApp</h2>
+                <p>
+                    Чтобы присоединиться к группе WhatsApp жильцов -
+                    <a href="https://chat.whatsapp.com/BlBeTgrAOjIFzVDcppOgJ7" target="_blank">нажмите здесь!</a>
+                </p>
+                <img src="/static/whatsapp-logo.png" alt="Логотип WhatsApp">
+            </section>
+        </section>
+
+        <!-- English Content -->
+        <section id="english-content" class="content-section" data-lang="en">
+            <h2>English</h2>
+            <div>{{ english_text | safe }}</div>
+            <!-- Common sections in English -->
+            <section class="calendar-section">
+                <h2>Calendar</h2>
+                <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FJerusalem&showPrint=0&src=Y2NmMjQ5YjJiNmJlNWQyMjNlMWIzZDA1NDlhYzU0ZWQ5MmY0MzgzYWJhOWRiM2IyNWRmZTVlYzhkMzcxMThiNUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=bWFvci5rYWRvc2hAYXJtaXMuY29t&color=%23cc7700&color=%23B39DDB"
+                frameborder="0" scrolling="no"></iframe>
+            </section>
+            <section class="whatsapp-section">
+                <h2>Join WhatsApp</h2>
+                <p>
+                    To join the residents' WhatsApp group -
+                    <a href="https://chat.whatsapp.com/BlBeTgrAOjIFzVDcppOgJ7" target="_blank">click here!</a>
+                </p>
+                <img src="/static/whatsapp-logo.png" alt="WhatsApp Logo">
+            </section>
+        </section>
+    </main>
+    <footer class="rtl-content" lang="he">
+        <p>©נוצר ע״י מאור קדוש, 2025</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const langButtons = document.querySelectorAll('.lang-btn');
+            const contentSections = document.querySelectorAll('.content-section');
+
+            langButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    langButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    const selectedLang = button.getAttribute('data-lang');
+
+                    contentSections.forEach(section => {
+                        section.classList.remove('active');
+                        if (section.getAttribute('data-lang') === selectedLang) {
+                            section.classList.add('active');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
