@@ -1,17 +1,49 @@
-/* Reset and Base Styles */
-* {
+/* משתני CSS מורחבים */
+:root {
+    /* צבעים */
+    --primary-color: #6200ea;
+    --primary-light: #9d46ff;
+    --primary-dark: #0a00b6;
+    --secondary-color: #3700b3;
+    --text-color: #333;
+    --text-light: #666;
+    --background-light: #f4f4f4;
+    --white: #fff;
+
+    /* צללים */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+
+    /* מרווחים */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+
+    /* גדלי טקסט */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.25rem;
+    --text-xl: 1.5rem;
+    --text-2xl: 2rem;
+    --text-3xl: 2.5rem;
+
+    /* מעברים */
+    --transition-fast: 150ms ease;
+    --transition-normal: 300ms ease;
+    --transition-slow: 500ms ease;
+}
+
+/* איפוס ובסיס */
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-:root {
-    --primary-color: #6200ea;
-    --secondary-color: #3700b3;
-    --text-color: #333;
-    --background-light: #f4f4f4;
-    --white: #fff;
-    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -19,93 +51,79 @@ body {
     line-height: 1.6;
     background-color: var(--background-light);
     color: var(--text-color);
+    overflow-x: hidden;
 }
 
-/* Header Styles */
+/* Grid Layout */
+.container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--spacing-md);
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--spacing-md);
+}
+
+/* Header עם Flexbox */
 header {
     background: var(--primary-color);
     color: var(--white);
-    padding: 2rem 1rem;
-    text-align: center;
+    padding: var(--spacing-lg);
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: var(--shadow);
-    transition: background-color 0.3s ease;
+    box-shadow: var(--shadow-md);
+    transition: background-color var(--transition-normal);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
 }
 
 header:hover {
-    background: var(--secondary-color);
+    background: var(--primary-dark);
 }
 
-header img {
-    margin: 0 auto;
-    display: block;
-    border-radius: 10px;
-    max-width: 100%;
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* תמונות מתקדמות */
+.image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.image-container img {
+    width: 100%;
     height: auto;
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-normal);
+    will-change: transform;
 }
 
-header img:hover {
+.image-container:hover img {
     transform: scale(1.05);
 }
 
-h1 {
-    margin: 1rem 0;
-    font-size: 2.5rem;
-    font-weight: 700;
-}
-
-/* Main Content */
-main {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 2rem auto;
-    background: var(--white);
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-}
-
-/* Section Styles */
-section {
-    margin-bottom: 3rem;
-    padding: 1.5rem;
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-}
-
-section:hover {
-    transform: translateY(-5px);
-}
-
-/* Responsive iFrame */
-iframe {
-    margin-top: 1.5rem;
-    width: 100%;
-    border: none;
-    border-radius: 8px;
-    box-shadow: var(--shadow);
-}
-
-/* Media Queries */
-@media screen and (max-width: 768px) {
-    main {
-        padding: 1rem;
-        margin: 1rem;
+/* אנימציות מתקדמות */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
     }
-
-    h1 {
-        font-size: 2rem;
-    }
-
-    section {
-        margin-bottom: 2rem;
+    to {
+        opacity: 1;
+        transform: translateX(0);
     }
 }
 
-/* Animations */
-@keyframes fadeIn {
+@keyframes fadeUp {
     from {
         opacity: 0;
         transform: translateY(20px);
@@ -116,6 +134,102 @@ iframe {
     }
 }
 
-section {
-    animation: fadeIn 0.5s ease-out;
+.animate-slide-in {
+    animation: slideIn var(--transition-normal) forwards;
+}
+
+.animate-fade-up {
+    animation: fadeUp var(--transition-normal) forwards;
+}
+
+/* CSS Grid לתוכן */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+}
+
+.card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Scroll Snap */
+.scroll-container {
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+    display: flex;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+}
+
+.scroll-item {
+    scroll-snap-align: start;
+    flex: 0 0 100%;
+    min-width: 300px;
+}
+
+/* תמיכה ב-Dark Mode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-light: #1a1a1a;
+        --text-color: #f4f4f4;
+        --text-light: #ccc;
+        --white: #2a2a2a;
+    }
+}
+
+/* Media Queries מורחבים */
+@media screen and (max-width: 1200px) {
+    .container {
+        grid-template-columns: repeat(8, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    :root {
+        --spacing-lg: 1.5rem;
+        --spacing-md: 1rem;
+        --text-2xl: 1.75rem;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* הנגשה */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
