@@ -1,41 +1,121 @@
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+/* Reset and Base Styles */
+* {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    box-sizing: border-box;
 }
 
+:root {
+    --primary-color: #6200ea;
+    --secondary-color: #3700b3;
+    --text-color: #333;
+    --background-light: #f4f4f4;
+    --white: #fff;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.6;
+    background-color: var(--background-light);
+    color: var(--text-color);
+}
+
+/* Header Styles */
 header {
-    background: #6200ea;
-    color: #fff;
-    padding: 1rem;
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 2rem 1rem;
     text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow);
+    transition: background-color 0.3s ease;
+}
+
+header:hover {
+    background: var(--secondary-color);
 }
 
 header img {
     margin: 0 auto;
     display: block;
-    border-radius: 10px; /* לדוגמה, פינות מעוגלות */
-}
-h1 {
-    margin: 0;
+    border-radius: 10px;
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
 }
 
+header img:hover {
+    transform: scale(1.05);
+}
+
+h1 {
+    margin: 1rem 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+/* Main Content */
 main {
-    padding: 1rem;
-    max-width: 800px;
-    margin: auto;
-    background: #fff;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+/* Section Styles */
+section {
+    margin-bottom: 3rem;
+    padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+section:hover {
+    transform: translateY(-5px);
+}
+
+/* Responsive iFrame */
+iframe {
+    margin-top: 1.5rem;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    main {
+        padding: 1rem;
+        margin: 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    section {
+        margin-bottom: 2rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 section {
-    margin-bottom: 2rem;
-}
-
-iframe {
-    margin-top: 1rem;
+    animation: fadeIn 0.5s ease-out;
 }
