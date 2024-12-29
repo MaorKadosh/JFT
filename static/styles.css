@@ -288,6 +288,17 @@ footer {
     }
 }
 
+@media (max-width: 768px) {
+    header {
+        position: relative;
+        top: auto;
+        height: 50px; /* התאמת גובה */
+        padding: 10px; /* הקטנת ריווחים פנימיים */
+        font-size: 14px; /* גודל טקסט מותאם */
+    }
+}
+
+
 .visually-hidden {
     position: absolute;
     width: 1px;
