@@ -95,6 +95,8 @@ body {
 
 /* Header Styles */
 header {
+    min-height: 80px;
+    width: 100%;
     background: var(--primary-color);
     color: var(--white);
     padding: var(--spacing-lg);
@@ -361,42 +363,43 @@ footer {
     }
 
     /* Header Styles */
-header {
-    width: 100%;
-    height: auto;
-    min-height: 60px;
-    background: transparent;
-    color: var(--white);
-    position: relative;
-    z-index: var(--z-header);
-    transition: all var(--transition-normal);
-    overflow: hidden;
-}
+    header {
+        width: 100%;
+        height: auto;
+        min-height: 60px;
+        background: transparent;
+        color: var(--white);
+        position: relative;
+        z-index: var(--z-header);
+        transition: all var(--transition-normal);
+        overflow: hidden;
+    }
 
-.header-svg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    object-fit: cover;
-    transition: transform var(--transition-normal);
-}
+    .header-svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        object-fit: cover;
+        transition: transform var(--transition-normal);
+    }
 
-.header-content {
-    position: relative;
-    padding: var(--spacing-lg);
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+    .header-content {
+        position: relative;
+        padding: var(--spacing-lg);
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
 /* Responsive Header Adjustments */
 @media screen and (max-width: 768px) {
     header {
-        min-height: 50px;
+        min-height: 60px;
+        padding: var(--spacing-sm);
     }
 
     .header-content {
