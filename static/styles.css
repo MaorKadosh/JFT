@@ -35,6 +35,13 @@
     --transition-fast: 150ms ease;
     --transition-normal: 300ms ease;
     --transition-slow: 500ms ease;
+
+    /* אנימציות */
+    --animation-duration: 500ms;
+    --animation-easing: cubic-bezier(0.25, 1, 0.5, 1);
+
+    /* גבהים דינמיים */
+    --header-height: calc(4rem + var(--spacing-sm));
 }
 
 /* איפוס ובסיס */
@@ -48,10 +55,11 @@
 
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
-    line-height: 1.6;
+    line-height: 1.8;
     background-color: var(--background-light);
     color: var(--text-color);
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 /* Grid Layout */
@@ -98,6 +106,10 @@ header:hover {
     position: relative;
     overflow: hidden;
     border-radius: 12px;
+    mask-image: radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+.image-container {
+    clip-path: circle(70%);
+    }
 }
 
 .image-container img {
@@ -135,11 +147,11 @@ header:hover {
 }
 
 .animate-slide-in {
-    animation: slideIn var(--transition-normal) forwards;
+    animation: slideIn var(--animation-duration) var(--animation-easing) forwards;
 }
 
 .animate-fade-up {
-    animation: fadeUp var(--transition-normal) forwards;
+    animation: fadeUp var(--animation-duration) var(--animation-easing) forwards;
 }
 
 /* CSS Grid לתוכן */
@@ -165,6 +177,8 @@ header:hover {
 .card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: var(--white);
 }
 
 /* Scroll Snap */
