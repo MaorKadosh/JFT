@@ -1,354 +1,440 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
-    <link rel="stylesheet" href="../static/styles.css">
-    <link rel="icon" href="../static/favicon.ico" type="image/x-icon">
-    <meta name="description" content="דף נחיתה עבור מכורים אנונימיים - רנסנס ויקטוריה">
-    <meta name="keywords" content="מכורים אנונימיים, רנסנס ויקטוריה, תמיכה, שיקום">
-    <meta name="author" content="מאור קדוש">
-    <meta property="og:title" content="רנסנס ויקטוריה - רק להיום">
-    <meta property="og:description" content="דף נחיתה עבור מכורים אנונימיים - רנסנס ויקטוריה">
-    <meta property="og:image" content="../static/logo.webp">
-    <meta property="og:url" content="https://jft.onrender.com/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Just For Today</title>
-    <style>
-        /* Base styles */
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
+    <meta name="description" content="רק להיום - דף נחיתה עבור מכורים אנונימיים - רנסנס ויקטוריה">
+    <meta name="keywords" content="מכורים אנונימיים, רנסנס ויקטוריה, תמיכה, שיקום, רק להיום">
+    <meta name="author" content="מאור קדוש">
 
-        header {
-            background: #6200ea;
-            color: #fff;
-            padding: 1rem;
-        }
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="רנסנס ויקטוריה - רק להיום">
+    <meta property="og:description" content="דף נחיתה עבור מכורים אנונימיים - רנסנס ויקטוריה">
+    <meta property="og:image" content="/static/logo.webp">
+    <meta property="og:url" content="https://jft.onrender.com/">
+    <meta property="og:type" content="website">
 
-        .main-title {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            font-size: 2.5rem;
-            text-align: center;
-            padding: 1rem 0;
-            font-weight: bold;
-            margin: 0;
-            direction: rtl;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            color: white;
-        }
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="רנסנס ויקטוריה - רק להיום">
+    <meta name="twitter:description" content="דף נחיתה עבור מכורים אנונימיים - רנסנס ויקטוריה">
+    <meta name="twitter:image" content="../static/logo.webp">
 
-        header img {
-            margin: 0 auto;
-            display: block;
-            border-radius: 10px;
-            max-width: 100%;
-            height: auto;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
+    <!-- Favicon -->
+    <link rel="icon" href="../static/favicon.ico" type="image/x-icon">
 
-        header img:hover {
-            transform: scale(1.02);
-        }
+    <!-- Preload Critical Assets -->
+    <link rel="preload" href="../static/styles.css" as="style">
+    <link rel="preload" href="../static/logo.webp" as="image">
 
-        main {
-            padding: 1rem;
-            max-width: 800px;
-            margin: 20px auto;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../static/styles.css">
 
-        /* Language selector styles */
-        .language-selector {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            padding: 1rem;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            margin: 1rem 0;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .lang-btn {
-            padding: 0.5rem 1.5rem;
-            border: 2px solid #fff;
-            border-radius: 4px;
-            background-color: transparent;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: bold;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .lang-btn:after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-        }
-
-        .lang-btn:hover:after {
-            transform: translateX(0);
-        }
-
-        .lang-btn.active {
-            background-color: white;
-            color: #6200ea;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .lang-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Content sections */
-        .content-section {
-            display: none;
-            padding: 1.5rem;
-            animation: fadeIn 0.3s ease-in;
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        .content-section.active {
-            display: block;
-        }
-
-        /* Calendar and WhatsApp sections */
-        .calendar-section, .whatsapp-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: #f8f9fa;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .calendar-section:hover, .whatsapp-section:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .calendar-section iframe {
-            width: 100%;
-            max-width: 800px;
-            height: 600px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            margin-top: 1rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            loading: lazy;
-        }
-
-        .whatsapp-section {
-            background-color: #f0f0f0;
-            padding: 2rem;
-        }
-
-        .whatsapp-section img {
-            width: 100px;
-            height: auto;
-            margin: 1rem 0;
-            transition: transform 0.3s ease;
-            aria-hidden: true;
-        }
-
-        .whatsapp-section img:hover {
-            transform: scale(1.1);
-        }
-
-        .whatsapp-section a {
-            color: #6200ea;
-            text-decoration: none;
-            font-weight: bold;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .whatsapp-section a:after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: #6200ea;
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .whatsapp-section a:hover:after {
-            transform: scaleX(1);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 1.5rem;
-            background-color: #6200ea;
-            color: white;
-            margin-top: 2rem;
-            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* RTL Support */
-        .rtl-content {
-            direction: rtl;
-            text-align: right;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .main-title {
-                font-size: 2rem;
-            }
-
-            .language-selector {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .lang-btn {
-                width: 80%;
-                margin: 0.5rem 0;
-            }
-
-            main {
-                padding: 0.5rem;
-                margin: 10px;
-            }
-
-            .calendar-section iframe {
-                height: 400px;
-            }
-        }
-    </style>
+    <title>רק להיום - רנסנס ויקטוריה</title>
 </head>
 <body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link visually-hidden">דלג לתוכן הראשי</a>
+
     <header>
-        <h1 class="main-title">- - רק להיום - -</h1>
-        <div class="language-selector">
-            <button class="lang-btn active rtl-content" data-lang="he" lang="he">עברית</button>
-            <button class="lang-btn" data-lang="ru">Русский</button>
-            <button class="lang-btn" data-lang="en">English</button>
+        <nav class="language-nav" aria-label="בחירת שפה">
+            <div class="language-selector">
+                <button class="lang-btn active" data-lang="he" aria-pressed="true">
+                    <span aria-hidden="true">🇮🇱</span> עברית
+                </button>
+                <button class="lang-btn" data-lang="ru" aria-pressed="false">
+                    <span aria-hidden="true">🇷🇺</span> Русский
+                </button>
+                <button class="lang-btn" data-lang="en" aria-pressed="false">
+                    <span aria-hidden="true">🇺🇸</span> English
+                </button>
+            </div>
+        </nav>
+
+        <h1 class="main-title">רק להיום</h1>
+
+        <div class="logo-container">
+            <img src="../static/logo.webp"
+                 alt="לוגו רנסנס ויקטוריה"
+                 width="200"
+                 height="200"
+                 loading="eager"
+                 decoding="async">
         </div>
-        <img src="../static/logo.webp" alt="ויקטוריה רנסנס - דיירים" loading="lazy">
     </header>
-    <main>
+
+    <main id="main-content">
+        <div class="loading-spinner" id="loading-spinner" aria-hidden="true"></div>
+
         <!-- Hebrew Content -->
-        <section id="hebrew-content" class="content-section active rtl-content" lang="he" data-lang="he">
-            <h2>עברית</h2>
-            <div class="rtl-content">{{ hebrew_text | safe }}</div>
-            <!-- Common sections in Hebrew -->
-            <section class="calendar-section rtl-content">
-                <h2>לוח שנה</h2>
-                <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FJerusalem&showPrint=0&src=Y2NmMjQ5YjJiNmJlNWQyMjNlMWIzZDA1NDlhYzU0ZWQ5MmY0MzgzYWJhOWRiM2IyNWRmZTVlYzhkMzcxMThiNUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=bWFvci5rYWRvc2hAYXJtaXMuY29t&color=%23cc7700&color=%23B39DDB" style="border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);" loading="lazy"></iframe>
-            </section>
-            <section class="whatsapp-section rtl-content">
-                <h2>הצטרפות לוואטסאפ</h2>
-                <p>
-                    להצטרפות לקבוצת הוואטסאפ של הדיירים -
-                    <a href="https://chat.whatsapp.com/BlBeTgrAOjIFzVDcppOgJ7" target="_blank">לחצו כאן!</a>
-                </p>
-                <img src="../static/whatsapp-logo.webp" alt="לוגו וואטסאפ">
-            </section>
+        <section id="hebrew-content"
+                 class="content-section active"
+                 lang="he"
+                 data-lang="he"
+                 aria-labelledby="hebrew-title">
+            <h2 id="hebrew-title" class="section-title">רק להיום בעברית</h2>
+            <div class="daily-content rtl-content">{{ hebrew_text | safe }}</div>
+
+            <div class="calendar-section">
+                <h3>לוח פעילויות</h3>
+                <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FJerusalem&showPrint=0&src=Y2NmMjQ5YjJiNmJlNWQyMjNlMWIzZDA1NDlhYzU0ZWQ5MmY0MzgzYWJhOWRiM2IyNWRmZTVlYzhkMzcxMThiNUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
+                        title="לוח פעילויות רנסנס ויקטוריה"
+                        loading="lazy"
+                        sandbox="allow-scripts allow-same-origin allow-popups">
+                </iframe>
+            </div>
+
+            <div class="whatsapp-section">
+                <h3>הצטרפות לקבוצת WhatsApp</h3>
+                <p>להצטרפות לקבוצת הוואטסאפ של הדיירים</p>
+                <a href="https://chat.whatsapp.com/BlBeTgrAOjIFzVDcppOgJ7"
+                   class="whatsapp-link"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <img src="../static/whatsapp-logo.webp"
+                         alt=""
+                         width="50"
+                         height="50"
+                         loading="lazy"
+                         aria-hidden="true">
+                    <span>לחץ להצטרפות</span>
+                </a>
+            </div>
         </section>
 
         <!-- Russian Content -->
-        <section id="russian-content" class="content-section" data-lang="ru">
-            <h2>Русский</h2>
-            <div>{{ russian_text | safe }}</div>
-            <!-- Common sections in Russian -->
-            <section class="calendar-section">
-                <h2>Календарь</h2>
-                <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FJerusalem&showPrint=0&src=Y2NmMjQ5YjJiNmJlNWQyMjNlMWIzZDA1NDlhYzU0ZWQ5MmY0MzgzYWJhOWRiM2IyNWRmZTVlYzhkMzcxMThiNUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=bWFvci5rYWRvc2hAYXJtaXMuY29t&color=%23cc7700&color=%23B39DDB" style="border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);" loading="lazy"></iframe>
-            </section>
-            <section class="whatsapp-section">
-                <h2>Присоединиться к WhatsApp</h2>
-                <p>
-                    Чтобы присоединиться к группе WhatsApp жильцов -
-                    <a href="https://chat.whatsapp.com/BlBeTgrAOjIFzVDcppOgJ7" target="_blank">нажмите здесь!</a>
-                </p>
-                <img src="../static/whatsapp-logo.webp" alt="Логотип WhatsApp">
-            </section>
+        <section id="russian-content"
+                 class="content-section"
+                 lang="ru"
+                 data-lang="ru"
+                 aria-labelledby="russian-title"
+                 hidden>
+            <h2 id="russian-title" class="section-title">Только сегодня</h2>
+            <div class="daily-content">{{ russian_text | safe }}</div>
+
+            <div class="calendar-section">
+                <h3>Календарь мероприятий</h3>
+                <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FJerusalem&showPrint=0&src=Y2NmMjQ5YjJiNmJlNWQyMjNlMWIzZDA1NDlhYzU0ZWQ5MmY0MzgzYWJhOWRiM2IyNWRmZTVlYzhkMzcxMThiNUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
+                        title="Календарь мероприятий Ренессанс Виктория"
+                        loading="lazy"
+                        sandbox="allow-scripts allow-same-origin allow-popups">
+                </iframe>
+            </div>
+
+            <div class="whatsapp-section">
+                <h3>Присоединиться к группе WhatsApp</h3>
+                <p>Присоединиться к группе WhatsApp жильцов</p>
+                <a href="https://chat.whatsapp.com/BlBeTgrAOjIFzVDcppOgJ7"
+                   class="whatsapp-link"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <img src="../static/whatsapp-logo.webp"
+                         alt=""
+                         width="50"
+                         height="50"
+                         loading="lazy"
+                         aria-hidden="true">
+                    <span>Нажмите, чтобы присоединиться</span>
+                </a>
+            </div>
         </section>
 
         <!-- English Content -->
-        <section id="english-content" class="content-section" data-lang="en">
-            <h2>English</h2>
-            <div>{{ english_text | safe }}</div>
-            <!-- Common sections in English -->
-            <section class="calendar-section">
-                <h2>Calendar</h2>
-                <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FJerusalem&showPrint=0&src=Y2NmMjQ5YjJiNmJlNWQyMjNlMWIzZDA1NDlhYzU0ZWQ5MmY0MzgzYWJhOWRiM2IyNWRmZTVlYzhkMzcxMThiNUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=bWFvci5rYWRvc2hAYXJtaXMuY29t&color=%23cc7700&color=%23B39DDB" style="border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);" loading="lazy"></iframe>
-            </section>
-            <section class="whatsapp-section">
-                <h2>Join WhatsApp</h2>
-                <p>
-                    To join the residents' WhatsApp group -
-                    <a href="https://chat.whatsapp.com/BlBeTgrAOjIFzVDcppOgJ7" target="_blank">click here!</a>
-                </p>
-                <img src="../static/whatsapp-logo.webp" alt="WhatsApp Logo">
-            </section>
+        <section id="english-content"
+                 class="content-section"
+                 lang="en"
+                 data-lang="en"
+                 aria-labelledby="english-title"
+                 hidden>
+            <h2 id="english-title" class="section-title">Just For Today</h2>
+            <div class="daily-content">{{ english_text | safe }}</div>
+
+            <div class="calendar-section">
+                <h3>Activities Calendar</h3>
+                <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FJerusalem&showPrint=0&src=Y2NmMjQ5YjJiNmJlNWQyMjNlMWIzZDA1NDlhYzU0ZWQ5MmY0MzgzYWJhOWRiM2IyNWRmZTVlYzhkMzcxMThiNUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
+                        title="Renaissance Victoria Activities Calendar"
+                        loading="lazy"
+                        sandbox="allow-scripts allow-same-origin allow-popups">
+                </iframe>
+            </div>
+
+            <div class="whatsapp-section">
+                <h3>Join WhatsApp Group</h3>
+                <p>Join the residents' WhatsApp group</p>
+                <a href="https://chat.whatsapp.com/BlBeTgrAOjIFzVDcppOgJ7"
+                   class="whatsapp-link"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <img src="../static/whatsapp-logo.webp"
+                         alt=""
+                         width="50"
+                         height="50"
+                         loading="lazy"
+                         aria-hidden="true">
+                    <span>Click to join</span>
+                </a>
+            </div>
         </section>
     </main>
-    <footer class="rtl-content" lang="he">
-        <p>©נוצר ע״י מאור קדוש, 2025</p>
+
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle"
+            aria-label="שינוי מצב תצוגה"
+            title="שינוי מצב תצוגה (כהה/בהיר)">
+        <span class="theme-toggle-icon" aria-hidden="true">🌓</span>
+    </button>
+
+    <footer>
+        <p>© {{ current_year }} רנסנס ויקטוריה. כל הזכויות שמורות.</p>
+        <p>נוצר על ידי מאור קדוש</p>
     </footer>
 
+    <!-- Scripts -->
     <script>
+        // Language Switcher
         document.addEventListener('DOMContentLoaded', function() {
             const langButtons = document.querySelectorAll('.lang-btn');
             const contentSections = document.querySelectorAll('.content-section');
 
+            // Get saved language preference
+            const savedLang = localStorage.getItem('preferred-language') || 'he';
+
+            function switchLanguage(lang) {
+                // Update buttons
+                langButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-pressed', 'false');
+                    if (btn.dataset.lang === lang) {
+                        btn.classList.add('active');
+                        btn.setAttribute('aria-pressed', 'true');
+                    }
+                });
+
+                // Update content sections
+                contentSections.forEach(section => {
+                    if (section.dataset.lang === lang) {
+                        section.removeAttribute('hidden');
+                        section.classList.add('active', 'fade-in');
+                    } else {
+                        section.setAttribute('hidden', '');
+                        section.classList.remove('active', 'fade-in');
+                    }
+                });
+
+                // Save preference
+                localStorage.setItem('preferred-language', lang);
+
+                // Update HTML lang attribute
+                document.documentElement.lang = lang;
+
+                // Update direction attribute based on language
+                document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
+            }
+
+            // Set initial language
+            switchLanguage(savedLang);
+
+            // Add click handlers
             langButtons.forEach(button => {
                 button.addEventListener('click', () => {
-                    langButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-
-                    const selectedLang = button.getAttribute('data-lang');
-
-                    contentSections.forEach(section => {
-                        section.classList.remove('active');
-                        if (section.getAttribute('data-lang') === selectedLang) {
-                            section.classList.add('active');
-                        }
-                    });
+                    switchLanguage(button.dataset.lang);
                 });
             });
         });
+
+        // Dark Mode Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.querySelector('.theme-toggle');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+            // Get saved theme preference
+            const savedTheme = localStorage.getItem('color-theme');
+
+            function setTheme(isDark) {
+                document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+                themeToggle.setAttribute('aria-pressed', isDark);
+                localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
+            }
+
+            // Set initial theme
+            if (savedTheme) {
+                setTheme(savedTheme === 'dark');
+            } else {
+                setTheme(prefersDark.matches);
+            }
+
+            // Toggle theme on button click
+            themeToggle.addEventListener('click', () => {
+                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                setTheme(!isDark);
+            });
+
+            // Listen for system theme changes
+            prefersDark.addEventListener('change', (e) => {
+                if (!localStorage.getItem('color-theme')) {
+                    setTheme(e.matches);
+                }
+            });
+        });
+
+        // Loading State Management
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingSpinner = document.getElementById('loading-spinner');
+
+            // Show loading spinner
+            function showLoading() {
+                loadingSpinner.style.display = 'block';
+                document.body.style.cursor = 'wait';
+            }
+
+            // Hide loading spinner
+            function hideLoading() {
+                loadingSpinner.style.display = 'none';
+                document.body.style.cursor = 'default';
+            }
+
+            // Hide spinner when page is loaded
+            window.addEventListener('load', hideLoading);
+
+            // Show spinner when changing languages
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                showLoading();
+                    setTimeout(hideLoading, 500);
+                });
+            });
+        });
+
+        // Share Functionality
+        async function shareContent() {
+            const title = document.title;
+            const url = window.location.href;
+            
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: title,
+                        url: url
+                    });
+                } catch (error) {
+                    console.error('Error sharing:', error);
+                }
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('הקישור הועתק ללוח');
+                }).catch(err => {
+                    console.error('Failed to copy:', err);
+                });
+            }
+        }
+
+        // Performance Monitoring
+        if ('performance' in window && 'getEntriesByType' in performance) {
+            window.addEventListener('load', () => {
+                // Use modern Performance API metrics
+                const navigationEntry = performance.getEntriesByType('navigation')[0];
+                const loadTime = navigationEntry.duration;
+
+                // Log performance metrics
+                console.log(`Page Load Time: ${loadTime}ms`);
+
+                // Additional performance metrics
+                const timeToFirstByte = navigationEntry.responseStart - navigationEntry.requestStart;
+                const domInteractive = navigationEntry.domInteractive;
+                const domComplete = navigationEntry.domComplete;
+
+                // Report significant delays
+                if (loadTime > 3000) {
+                    console.warn('Page load time exceeded threshold:', {
+                        totalLoadTime: loadTime,
+                        timeToFirstByte,
+                        domInteractive,
+                        domComplete
+                    });
+                }
+
+                // Clear performance entries to maintain memory efficiency
+                performance.clearResourceTimings();
+            });
+        }
+
+        // Content Error Handling
+        function handleContentError(element, error) {
+            const errorMessage = document.createElement('div');
+            errorMessage.className = 'error-message';
+            errorMessage.setAttribute('role', 'alert');
+            errorMessage.innerHTML = `
+                <p>התרחשה שגיאה בטעינת התוכן. אנא נסה שוב מאוחר יותר.</p>
+                <button onclick="location.reload()">טען מחדש</button>
+            `;
+            element.appendChild(errorMessage);
+            console.error('Content Error:', error);
+        }
+
+        // Offline Support
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(() => {
+                        console.log('ServiceWorker registration completed successfully');
+                    })
+                    .catch((error) => {
+                        console.error('ServiceWorker registration failed:', error);
+                    });
+            });
+        }
+
+        // Handle Network Status
+        window.addEventListener('online', () => {
+            document.body.classList.remove('offline');
+            // Refresh content if needed
+            location.reload();
+        });
+
+        window.addEventListener('offline', () => {
+            document.body.classList.add('offline');
+            // Show offline notification
+            const offlineAlert = document.createElement('div');
+            offlineAlert.className = 'offline-alert';
+            offlineAlert.setAttribute('role', 'alert');
+            offlineAlert.textContent = 'אתה במצב לא מקוון. חלק מהתכונות עלולות לא לעבוד.';
+            document.body.appendChild(offlineAlert);
+        });
+
+        // Intersection Observer for Lazy Loading
+        const observerOptions = {
+            root: null,
+            rootMargin: '50px',
+            threshold: 0.1
+        };
+
+        const handleIntersection = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.dataset.src) {
+                        entry.target.src = entry.target.dataset.src;
+                        entry.target.removeAttribute('data-src');
+                    }
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const lazyLoadObserver = new IntersectionObserver(handleIntersection, observerOptions);
+
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            lazyLoadObserver.observe(img);
+        });
+    </script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').catch(function(err) {
+                console.error('Service worker registration failed:', err);
+            });
+        }
     </script>
 </body>
 </html>
