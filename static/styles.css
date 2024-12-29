@@ -98,8 +98,7 @@ header {
     background: var(--primary-color);
     color: var(--white);
     padding: var(--spacing-lg);
-    position: sticky;
-    top: 0;
+    position: relative;
     z-index: var(--z-header);
     box-shadow: var(--shadow-md);
     transition: background-color var(--transition-normal);
